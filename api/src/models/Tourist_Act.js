@@ -1,14 +1,15 @@
 const {
-    DataTypes,
-    Sequelize
+    DataTypes
 } = require('sequelize');
 
 
 module.exports = (sequelize) => {
     sequelize.define('Tourist_Act', {
         id: {
-            type: DataTypes.STRING,
-            primaryKey: true
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            // allowNull: false
+            autoIncrement: true
         },
         name: {
             type: DataTypes.STRING,

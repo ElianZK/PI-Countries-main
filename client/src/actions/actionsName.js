@@ -1,0 +1,9 @@
+
+export const GET_ALL_COUNTRIES = 'GET_ALL_COUNTRIES'
+export const GET_BY_ID = 'GET_BY_ID'
+export const GET_BY_NAME = 'GET_BY_NAME'
+export const GET_BY_CONTINENT = 'GET_BY_CONTINENT'
+export const GET_BY_ACTIVITY = 'GET_BY_ACTIVITY'
+export const GET_POP_APLH = 'GET_POP_ALPH'
+export const GET_ACTIVITIES = 'GET_ACTIVITIES'
+export const GET_ACT_BY_SEASON = 'GET_ACT_BY_SEASON'
