@@ -26,6 +26,11 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 //------------------------------------------------------------------------------------------------
+// router.get('/countries', async (req,res,next)=>{
+    
+// })
+
+//------------------------------------------------------------------------------------------------
 router.get('/countries/', async (req, res, next) => {
     //     //obtener paises que coincidan con el nombre dado con query aparameter
     //     //si no existe ningun pais mostrar mensaje adecuado
