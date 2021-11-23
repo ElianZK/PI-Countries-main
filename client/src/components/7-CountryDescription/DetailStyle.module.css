@@ -1,0 +1,82 @@
+.container{
+    height: 200px;
+  
+    /* background-color: rgb(206, 218, 42);  */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+   
+}
+.flags{
+    padding-top: 8%;
+    margin-top: 150px;
+    margin-left: 130px;
+    padding-bottom: 20px;
+    display: flex;
+   flex-direction:row;
+    width: 350px;
+    height: 300px;
+}
+.card{
+    display: flex;
+    width: 600px;
+    height: 700px;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(233, 230, 93);
+    border-radius: 15px;
+    margin-top:550px ;
+    box-shadow: -2px 2px 104px 12px rgb(93, 247, 4);
+   
+
+   
+   
+   
+}
+
+.dataContainer{
+    margin-top: 15px;
+    margin-left: 130px;
+    margin-bottom: 200px;
+    
+}
+
+.image{
+    width: 20px;
+    height: 30px;
+    
+}
+
+.title{
+    margin-right: 200px;
+    font-size: 25px;
+    color: rgb(19, 16, 233);
+  
+}
+
+/* .subtitle{
+    margin-bottom: 20px;
+    padding: 20px;
+} */
+
+h4{
+    margin: 10px;
+    
+}
+
+.activities{
+    font-size: 18px;
+    color: rgb(233, 31, 16);
+  
+}
+
+li{
+    margin-bottom: 15px;
+    padding: 1px;
+    margin-left:10px;
+    display:list-item;
+}
+ 
+
+

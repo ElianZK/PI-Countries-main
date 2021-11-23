@@ -1,13 +1,15 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import {useDispatch, useSelector} from 'react-redux'
-import {link} from 'react-router-dom'
-import { getAllCountries, postActivity } from '../../actions/actions';
-import s from './Styles.module.css'
+import {getAllCountries, postActivity} from '../../actions/actions';
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {Link} from 'react-router-dom';
+import s from './FormStyle.module.css'
 
-export default function createActivity(){
+
+
+
+export default function ActForm(){
     const dispatch = useDispatch();
-    const countries = useSelector(state=> state.countries)
+    const countries = useSelector(state=> state.countries);
     const [activity, setActivity] = useState({
         name: '',
         difficulty: '',
@@ -22,7 +24,7 @@ export default function createActivity(){
 
     function handleSubmit(e){
         e.prevertDefault()
-        axios.post('http://localhost:3001/activity')
+        dispatch(postActivity(activity))//postActivity(activity)
         setActivity({
             name: '',
             difficulty: '',
@@ -30,8 +32,7 @@ export default function createActivity(){
             season:'',
             countries:[]
         })
-        dispatch(createActivity())
-        alert('~Activity Created Succesfuly~')
+        alert('Activity Created Succesfuly')
     }
     function handleChange(e){
         setActivity({
@@ -145,7 +146,9 @@ export default function createActivity(){
                         <ul>
                             <li>{activity.countries.map((c) => `~${c}~`)}</li>
                         </ul>
-                        
+                        <Link to='/home'> 
+                                    <button>Back</button>
+                        </Link>
                         <button type='submit' className={s.create}>Create Activity</button>
                     </form>
                 </div>
@@ -153,3 +156,4 @@ export default function createActivity(){
         </>
     )
 }
+

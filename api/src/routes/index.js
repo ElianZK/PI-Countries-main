@@ -31,7 +31,7 @@ const router = Router();
 // })
 
 //------------------------------------------------------------------------------------------------
-router.get('/countries/', async (req, res, next) => {
+router.get('/countries', async (req, res, next) => {
     //     //obtener paises que coincidan con el nombre dado con query aparameter
     //     //si no existe ningun pais mostrar mensaje adecuado
     // tyr cathc, error handler
@@ -40,9 +40,11 @@ router.get('/countries/', async (req, res, next) => {
     } = req.query;
     try {
         if (!name) {
-            const allCountries = await Country.findAll();
+            const allCountries = await Country.findAll({
+                inclide: Tourist_Act
+            });
             res.status(200).send(allCountries)
-        } else if (name) {
+        } else {
             const nameCountries = await Country.findAll({
                 where: {
                     name: {
@@ -50,11 +52,11 @@ router.get('/countries/', async (req, res, next) => {
                     }
                 }
             });
-            nameCountries.length ?
-                res.status(200).send(nameCountries) :
-                res.status(404).json({
-                    error: 'Country not found'
-                });
+            // nameCountries.length ?
+                res.status(200).send(nameCountries) //:
+                // res.status(404).json({
+                //     error: 'Country not found'
+                // });
         }
     } catch (error) {
         next(error)
@@ -91,10 +93,7 @@ router.get("/countries/:id", async (req, res, next) => {
 //------------------------------------------------------------------------------------------------
 
 router.post('/activity', async (req, res) => {
-    //     //recibe datos del formulario controlado por body
-    //     //crea una act turistica en la DB
     const {
-        id,
         name,
         difficulty,
         duration,
@@ -103,7 +102,6 @@ router.post('/activity', async (req, res) => {
     } = req.body
 
     const postActivity = await Tourist_Act.create({
-        id,
         name,
         difficulty,
         duration,
@@ -115,11 +113,12 @@ router.post('/activity', async (req, res) => {
 
     const findActivity = await Tourist_Act.findOne({
         where: {
-            name: name
+            name: name.toUpperCase()
         },
-        include:{
-            Country
-        }
+        include:[{
+            model: Country,
+            attributes:['name']
+        }]
         
     })
     return res.status(200).json(findActivity)
@@ -127,12 +126,10 @@ router.post('/activity', async (req, res) => {
 
 //------------------------------------------------------------------------------------------------
 
-// router.get('/countries', async (req, res) => {
-
-//     const createdActivities = await Tourist_Act.findAll()
-//     res.status(200).json(createdActivities)
-
-// })
+router.get('/activity', async (req, res) => {
+    const createdActivities = await Tourist_Act.findAll()
+    res.status(200).json(createdActivities)
+})
 
 
 
