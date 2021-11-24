@@ -1,32 +1,29 @@
 import {useDispatch, useSelector} from 'react-redux';
 import { useParams } from 'react-router';
 import React, {useEffect} from 'react';
-import {getById} from '../../actions/actions';
+import {countryDetail} from '../../actions/actions';
 import s from './DetailStyle.module.css';
 import NavBar from '../3-NavBar/NavBar';
-
-
-
 
 export default function Detail(){
     const dispatch = useDispatch();
     const {id} = useParams();
     useEffect(() => {
-        dispatch(getById(id));    
+        dispatch(countryDetail(id));    
     },[dispatch,id]);
     
-    const detail = useSelector((state) => state.byId);
+    const detail = useSelector((state) => state.detail);
     
     return (
         <>
         <NavBar />
         {
-            detail ?(
+            detail?(
                 <div >
                     <div key={detail.id}></div>
                     <div>
                         <div >
-                           <img src={detail.flags} alt="image_flag" />
+                           <img src={detail.flag} alt="image_flag" />
                         </div>
 
                         <div >

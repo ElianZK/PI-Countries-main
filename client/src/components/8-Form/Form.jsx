@@ -2,12 +2,9 @@ import {getAllCountries, postActivity} from '../../actions/actions';
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
-import s from './FormStyle.module.css'
 
 
-
-
-export default function ActForm(){
+export default function Form(){
     const dispatch = useDispatch();
     const countries = useSelector(state=> state.countries);
     const [activity, setActivity] = useState({
@@ -23,8 +20,8 @@ export default function ActForm(){
     },[dispatch])
 
     function handleSubmit(e){
-        e.prevertDefault()
-        dispatch(postActivity(activity))//postActivity(activity)
+        // e.prevertDefault()
+        dispatch(postActivity(activity))
         setActivity({
             name: '',
             difficulty: '',
@@ -35,6 +32,7 @@ export default function ActForm(){
         alert('Activity Created Succesfuly')
     }
     function handleChange(e){
+        // e.prevertDefault()
         setActivity({
             ...activity,
             [e.target.name] : e.target.value,
@@ -53,7 +51,7 @@ export default function ActForm(){
             <div >
                 <div >
                     
-                    <form onSubmit={handleSubmit}>
+                    <form /*onSubmit={(e)=>console.log(e)}*/>
 
                         <h2 >Add a Tourist Activity</h2>
 
@@ -66,16 +64,16 @@ export default function ActForm(){
                                 type='text'
                                 placeholder='Insert a name...'
                                 >
-                            </input><br/>
+                            </input>
+                            <br></br>
                         </div>
 
                         <div >
                             <label  htmlFor='season'>Activity Season:   </label>
-                            <select 
-                                    
+                            <select    
                                     onChange={handleChange}
                                     key={activity.season}
-                                    value={activity.season}
+                                    // value={activity.season}
                                     id='season'
                                     type='text'
                                     name='season'
@@ -85,13 +83,13 @@ export default function ActForm(){
                                 <option value='Autumn'>Autumn</option>
                                 <option value='Winter'>Winter</option>
                                 <option value='Spring'>Spring</option>
-                            </select><br/>
+                            </select>
+                            <br></br>
                         </div>
 
                         <div>
                             <label>Activity Duration:   </label>
                             <input
-                               
                                 onChange={handleChange}
                                 value={activity.duration}
                                 id='duration'
@@ -99,16 +97,16 @@ export default function ActForm(){
                                 name='duration'
                                 placeholder='The activity duration'
                                 required='required'>
-                            </input><br/>
+                            </input>
+                            <br></br>
                         </div>
 
                         <div>
                             <label  htmlFor='difficulty'>Activity Difficulty:   </label>
                             <select 
-                                   
                                     onChange={handleChange}
                                     key={activity.difficulty}
-                                    value={activity.difficulty}
+                                    // value={activity.difficulty}
                                     id='difficulty'
                                     type='text'
                                     name='difficulty'
@@ -119,7 +117,8 @@ export default function ActForm(){
                                 <option value='3'>3</option>
                                 <option value='4'>4</option>
                                 <option value='5'>5</option>
-                            </select><br/>
+                            </select>
+                            <br></br>
                         </div>
 
                         <div>
@@ -127,7 +126,7 @@ export default function ActForm(){
                             <select
                                     onChange={handleSelect}
                                     key={activity.countries}
-                                    value={activity.countries}
+                                    // value={activity.countries}
                                     id='countries'
                                     type='text'
                                     name='countries'
@@ -139,19 +138,19 @@ export default function ActForm(){
                                     key={c.id} 
                                     value={c.id}>{c.name}</option>
                                 ))}
-                            </select><br/>
+                            </select>
+                            <br></br>
                         </div>
                         <ul>
-                            <li>{activity.countries.map((c) => `~${c}~`)}</li>
+                            <li>{activity.countries.map((c) => `~${c}`)}</li>
                         </ul>
                         <Link to='/home'> 
-                                    <button>Back</button>
+                             <button>Back to Home</button>
                         </Link>
-                        <button type='submit'>Create Activity</button>
+                        <button onClick={handleSubmit}>Add Activity</button>
                     </form>
                 </div>
             </div>
         </>
     )
 }
-

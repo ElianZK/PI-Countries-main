@@ -8,18 +8,20 @@ import s from './HomeStyle.module.css';
 import {
         getAllCountries, 
         getAllActivities,
-        getByContinent, 
-        getByActivity, 
-        getActBySeason, 
-        getPopuAlph,    
+        countryByContinent, 
+        countryByActivity, 
+        activityBySeason, 
+        filterPopuAlph,    
 } from '../../actions/actions';
 
-export default function Home(){
+export default function HomePage(){
     const dispatch = useDispatch();
     const filters = useSelector((state) => state.filters)
     
-    const [,setSorter] = useState('')
+    const [,setSort] = useState('')
     
+    
+
     useEffect(() => {
         dispatch(getAllCountries())
         dispatch(getAllActivities())
@@ -29,13 +31,14 @@ export default function Home(){
         e.preventDefault()
         dispatch(getAllCountries())
     }
-    /*----------paginaion states---------*/
-    const [actualPage, setActualPage] = useState(1)
+    //pagination
+    const [currentPage, setCurrentPage] = useState(1)
     const [countriesPage] = useState(9)
 
-    let lastCountryIndex = actualPage * countriesPage;  //1*9
-    let firstCountryIndex = lastCountryIndex - countriesPage; //9-9
-    let currentCountries = filters?.slice(firstCountryIndex, lastCountryIndex) //(0,9)
+    let indexOfLastCountry = currentPage * countriesPage;  //1*9
+    let indexOfFirstCountry = indexOfLastCountry - countriesPage; //9-9
+   
+     let currentCountries= filters?.slice(indexOfFirstCountry, indexOfLastCountry) //(0,9)
     let pages = [];
 
     const numOfPages = Math.ceil(filters.length / countriesPage)
@@ -46,7 +49,7 @@ export default function Home(){
 
     function pagination(e, page){
         e.preventDefault();
-        setActualPage(page)
+        setCurrentPage(page)
     }
 
     const renderPages = pages.map(page => (
@@ -60,106 +63,100 @@ export default function Home(){
     ))
 
     
-    
-/*--------------filter by activity--------------------------*/    
-        function handleGetByActivity(e){
-           e.preventDefault()
-           dispatch(getByActivity(e.target.value))
-           setSorter(e.target.value)
-        }
-/*--------------filter by continent-------------------------*/
-        function handleGetByContinent(e){
-           dispatch(getByContinent(e.target.value))
-           setSorter(e.target.value)
-        }
-/*--------------filter by population and alphabetic---------*/
-        function handleGetPopuAlph(e){
-           e.preventDefault()
-           dispatch(getPopuAlph(e.target.value))
-           setSorter(e.target.value)
-       }
- /*-------------filter by season----------------------------*/    
-        function handleGetActBySeason(e){
-            e.preventDefault()
-            dispatch(getActBySeason(e.target.value))
-            setSorter(e.target.value)
-        }
+
+    //filters
+    function handleCountryByContinent(e){
+        dispatch(countryByContinent(e.target.value))
+        setSort(e.target.value)
+    }
+//--------------------------------------------------------
+    function handleCountryByActivity(e){
+        e.preventDefault()
+        dispatch(countryByActivity(e.target.value))
+        setSort(e.target.value)
+    }
+//--------------------------------------------------------
+    function handleActivityBySeason(e){
+       
+        dispatch(activityBySeason(e.target.value))
+        setSort(e.target.value)
+        
+    }
+//--------------------------------------------------------
+    function handleFilterPopuAlph(e){
+        e.preventDefault()
+        dispatch(filterPopuAlph(e.target.value))
+        setSort(e.target.value)
+    }
 
     
 
     return (
-    <>
+        <>
         <div>
             <NavBar />
             <br></br>
-            <SearchBar />
-            <br></br>
+                <SearchBar />
+                <br></br>
+                    <div>
+                        <select 
+                            onChange={handleCountryByContinent}>
+                                <option value='All'>Filters By Continents</option>
+                                <option value='Africa'>Africa</option>
+                                <option value='Asia'>Asia</option>
+                                <option value='Europe'>Europe</option>
+                                <option value='North America'>North America</option>
+                                <option value='Oceania'>Oceania</option>
+                                <option value='South America'>South America</option>
+                        </select>
+                        <select 
+                            onChange={handleActivityBySeason}>
+                                <option value='All'>Filters By Season</option>
+                                <option value='Autumn'>Autumn</option>
+                                <option value='Spring'>Spring</option>
+                                <option value='Summer'>Summer</option>
+                                <option value='Winter'>Winter</option>
+                        </select>
+                        <select 
+                            onChange={handleCountryByActivity}>
+                                <option value='All'>Filters By Activities</option>
+                                <option value='Surf'>Surf</option>
+                                <option value='Safari'>Safari</option>
+                                <option value='Sky diving'>Sky diving</option>
+                                <option value='Diving'>Diving</option>
+                                <option value='Montain Climb'>Montain-Climb</option>
+                                <option value='Camping'>Camping</option>
+                        </select>
+                        <select 
+                            onChange={handleFilterPopuAlph}>
+                                <option value='All'>Sorts</option>
+                                <option value='A-Z'>Countries A to Z</option>
+                                <option value='Z-A'>Countries Z to A</option>
+                                <option value='ASC'>Ascendant Population</option>
+                                <option value='DESC'>Descendant Population</option>
+                        </select>
+                    </div>  
             <div>
-                    <select onChange={handleGetByContinent}>
-                        <option value='All'>Filters By Continents</option>
-                        <option value='{Africa}'>Africa</option>
-                        <option value='{Asia}'>Asia</option>
-                        <option value='{Europe}'>Europe</option>
-                        <option value='{"North America"}'>North America</option>
-                        <option value='{Oceania}'>Oceania</option>
-                        <option value='{"South America"}'>South America</option>
-                    </select>
-
-                    <select  onChange={handleGetActBySeason}>
-                        <option value='All'>Filters By Season</option>
-                        <option value='Summer'>Summer</option>
-                        <option value='Autumn'>Autumn</option>
-                        <option value='Winter'>Winter</option>
-                        <option value='Spring'>Spring</option>
-                    </select>
-
-                    <select onChange={handleGetByActivity}>
-                        <option value='All'>Filters By Activities</option>
-                        <option value='Montain Climb'>Montain-Climb</option>
-                        <option value='Camping'>Camping</option>
-                        <option value='Safari'>Safari</option>
-                        <option value='Diving'>Diving</option>
-                        <option value='Surf'>Surf</option>
-                        <option value='Sky'>Sky</option>
-                    </select>
-
-                    <select onChange={handleGetPopuAlph}>
-                        <option value='All'>Sorts</option>
-                        <option value='A-Z'>Countries A to Z</option>
-                        <option value='Z-A'>Countries Z to A</option>
-                        <option value='MIN-MAX'>Acsendent Population </option>
-                        <option value='MAX-MIN'>Descendent Population</option>
-                    </select>
-            </div>  
-
-
-            <div>
-                <button onClick={(e) => handleClick(e)} >Refresh Country</button>
+                <button onClick={(e) => handleClick(e)}>Refresh Country</button>
+                {console.log(currentCountries)}
             </div>
-            
-                {currentCountries.length?(
-                    currentCountries.map((co) => (
+               {/*  {currentCountries.length?(
+                    currentCountries.map((c) => (
                         <Card
-                            name={co.name}
-                            id={co.id}
-                            flags={co.flags}
-                            continents={co.continents}
-                            activities={co.activities}
-                            key={co.id}
+                            name={c.name}
+                            id={c.id}
+                            flag={c.flag}
+                            continent={c.continent}
+                            key={c.id}
                         />
                     ))
                 ):(<h3>Country Not found</h3>)
-                } 
+                }  */}
         </div> 
-
-            <div>
-              <AllCards  countries={currentCountries} />
-            </div>
-        
-
-            <ul>{renderPages}</ul>
-      
-       
-    </>
+        <div>
+            <AllCards  countries={currentCountries} />
+        </div>
+        <ul>{renderPages}</ul>       
+        </>
     )
 }        

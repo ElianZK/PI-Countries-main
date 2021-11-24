@@ -17,35 +17,45 @@
 //     =====`-.____`.___ \_____/___.-`___.-'=====
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-const { default: axios } = require('axios')
+const {
+  default: axios
+} = require('axios')
 const server = require('./src/app.js');
-const {conn, Country} = require('./src/db.js');
-
-// const Country = require('./src/models/Country.js');
+const {
+  conn,
+  Country
+} = require('./src/db.js');
 // Syncing all the models at once.
-conn.sync({force: false}).then(() => {
-  server.listen(3001, async() => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
-    try  {
-      const apiUrl = await axios.get('https://restcountries.com/v3/all');
-      const apiData = apiUrl.data.map(e => {
-        return {
-          id: e.cca3,
-          name: e.name.common,
-          flag_image: e.flags[0], //.map(e=>e)
-          continent: e.continents,
-          capital: e.capital,
-          subregion: e.subregion,
-          area: e.area,
-          population: e.population,
-        }
-      })
-      await Country.bulkCreate(apiData)
-      return apiData
 
+
+
+conn.sync({
+  force: false
+}).then(() => {
+  server.listen(3001, async () => {
+    console.log('%s listening at 3001');
+    try {
+      const apiCountries = await axios.get(
+        'https://restcountries.com/v3/all',
+      );
+      const allCountries = apiCountries.data.map((d) => ({
+        id: d.cca3,
+        name: d.name.common,
+        flag: d.flags[0],
+        continents: d.continents[0],
+        capital: d.capital !== undefined ? d.capital[0] : undefined,
+        subregion: d.subregion,
+        area: d.area,
+        population: d.population
+      }))
+
+      await Country.bulkCreate(allCountries)
+      return allCountries
+
+      // console.log('Preloaded Countries')
+      //  // eslint-disable-line no-console
     } catch (e) {
-      console.log('error: ', e)
+      console.log('Catch an error: ', e)
     }
-
   });
 });

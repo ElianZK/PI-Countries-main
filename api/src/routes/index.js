@@ -1,84 +1,68 @@
 const {
     Router
 } = require('express');
-
 const {
     Country,
-    Tourist_Act
+    Activity
 } = require('../db')
-
 const {
-    Op, Model
+    Op,
+    Model
 } = require('sequelize');
-
-
-// const {
-//     conn
-// } = require('../index.js')
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
-
-
-const axios = require('axios');
-
+const cors = require ('cors')
+// const axios = require('axios');
 const router = Router();
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
-
+router.use(cors())
 //------------------------------------------------------------------------------------------------
-// router.get('/countries', async (req,res,next)=>{
-    
-// })
 
-//------------------------------------------------------------------------------------------------
 router.get('/countries', async (req, res, next) => {
-    //     //obtener paises que coincidan con el nombre dado con query aparameter
-    //     //si no existe ningun pais mostrar mensaje adecuado
-    // tyr cathc, error handler
     const {
         name
     } = req.query;
+
     try {
         if (!name) {
             const countries = await Country.findAll({
-                inclide: Tourist_Act
+                include: Activity
             })
-            res.status(200).send(countries)
+            res.status(200).json(countries)
         } else {
-            const country = await Country.findAll({
+            const nameCountry = await Country.findAll({
                 where: {
                     name: {
                         [Op.iLike]: `%${name}%`
                     }
-                }
-            });
-                res.status(200).send(country) 
+                },
+                include: Activity
+            })
+            res.status(200).json(nameCountry)
         }
-    } catch (error) {
-        next(error)
+
+    } catch (err) {
+        next(err)
     }
 
 })
 
-
-
 //------------------------------------------------------------------------------------------------
+
 router.get("/countries/:id", async (req, res, next) => {
     const {
         id
     } = req.params;
+
     try {
-        const countries = await Country.findOne({
+        const idCountry = await Country.findOne({
             where: {
                 id: id.toUpperCase()
             },
-            include: Tourist_Act
+            include: Activity
         })
 
-        res.status(200).send(countries)
+        return res.status(200).json(idCountry);
 
-    } catch (error) {
-        next(error)
+    } catch (err) {
+        next(err)
     }
 });
 
@@ -91,9 +75,9 @@ router.post('/activity', async (req, res) => {
         duration,
         season,
         countries
-    } = req.body
+    } = req.body;
 
-    const postActivity = await Tourist_Act.create({
+    const activity = await Activity.create({
         name,
         difficulty,
         duration,
@@ -101,17 +85,16 @@ router.post('/activity', async (req, res) => {
         countries
     })
 
-    await postActivity.addCountries(countries);
+    await activity.addCountries(countries);
 
-    const findActivity = await Tourist_Act.findOne({
+    const findActivity = await Activity.findAll({
         where: {
             name: name.toUpperCase()
         },
-        include:[{
+        include: [{
             model: Country,
-            attributes:['name']
+            attributes: ['name']
         }]
-        
     })
     return res.status(200).json(findActivity)
 })
@@ -119,10 +102,10 @@ router.post('/activity', async (req, res) => {
 //------------------------------------------------------------------------------------------------
 
 router.get('/activity', async (req, res) => {
-    const createdActivities = await Tourist_Act.findAll()
-    res.status(200).json(createdActivities)
+    const allActivities = await Activity.findAll({
+        include: Country
+    })
+    res.status(200).json(allActivities)
 })
-
-
 
 module.exports = router;

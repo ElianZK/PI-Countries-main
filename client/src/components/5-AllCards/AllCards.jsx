@@ -10,9 +10,9 @@ export default function AllCards({countries}){
                     <Card 
                         key={country.id}
                         id={country.id}
-                        flags={country.flags}
+                        flag={country.flag}
                         name={country.name}
-                        continents={country.continents} 
+                        continent={country.continent} 
                     />
                 )}
             </section>

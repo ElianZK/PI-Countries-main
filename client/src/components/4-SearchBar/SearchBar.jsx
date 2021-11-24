@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
-import {getByName} from '../../actions/actions';
+import {countryByName} from '../../actions/actions';
 import s from './SearchStyle.module.css';
 
 
@@ -13,7 +13,7 @@ export default function SearchBar(){
     }
     function handleSubmit(e){
         e.preventDefault()
-        dispatch(getByName(name))
+        dispatch(countryByName(name))
         setName('')
     }
     return(
