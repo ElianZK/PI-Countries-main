@@ -89,13 +89,13 @@ export default function Home(){
 
     return (
     <>
-        <div className={s.container}>
+        <div>
             <NavBar />
             <br></br>
             <SearchBar />
             <br></br>
-            <div className={s.filterContainer}>
-                    <select className={s.filter} onChange={handleGetByContinent}>
+            <div>
+                    <select onChange={handleGetByContinent}>
                         <option value='All'>Filters By Continents</option>
                         <option value='{Africa}'>Africa</option>
                         <option value='{Asia}'>Asia</option>
@@ -105,7 +105,7 @@ export default function Home(){
                         <option value='{"South America"}'>South America</option>
                     </select>
 
-                    <select className={s.filter} onChange={handleGetActBySeason}>
+                    <select  onChange={handleGetActBySeason}>
                         <option value='All'>Filters By Season</option>
                         <option value='Summer'>Summer</option>
                         <option value='Autumn'>Autumn</option>
@@ -113,7 +113,7 @@ export default function Home(){
                         <option value='Spring'>Spring</option>
                     </select>
 
-                    <select className={s.filter} onChange={handleGetByActivity}>
+                    <select onChange={handleGetByActivity}>
                         <option value='All'>Filters By Activities</option>
                         <option value='Montain Climb'>Montain-Climb</option>
                         <option value='Camping'>Camping</option>
@@ -123,7 +123,7 @@ export default function Home(){
                         <option value='Sky'>Sky</option>
                     </select>
 
-                    <select className={s.filter} onChange={handleGetPopuAlph}>
+                    <select onChange={handleGetPopuAlph}>
                         <option value='All'>Sorts</option>
                         <option value='A-Z'>Countries A to Z</option>
                         <option value='Z-A'>Countries Z to A</option>
@@ -133,8 +133,8 @@ export default function Home(){
             </div>  
 
 
-            <div className={s.btnContainer}>
-                <button onClick={(e) => handleClick(e)} className={s.btn}>Refresh Country</button>
+            <div>
+                <button onClick={(e) => handleClick(e)} >Refresh Country</button>
             </div>
             
                 {currentCountries.length?(
@@ -152,12 +152,12 @@ export default function Home(){
                 } 
         </div> 
 
-            <div className={s.countryContainer}>
+            <div>
               <AllCards  countries={currentCountries} />
             </div>
         
 
-            <ul className={s.ul}>{renderPages}</ul>
+            <ul>{renderPages}</ul>
       
        
     </>

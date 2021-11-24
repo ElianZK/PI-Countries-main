@@ -1,12 +1,13 @@
 import {
-    FILTER_ACT_BY_SEASON,
-    FILTER_BY_CONTINENT,
-    GET_ALL_ACTIVITIES,
-    FILTER_BY_ACTIVITY,
     GET_ALL_COUNTRIES,
+    COUNTRY_BY_ID,
+    COUNTRY_BY_NAME,
+    COUNTRY_BY_CONTINENT,
+    COUNTRY_BY_ACTIVITY,
     FILTER_POPU_APLH,
-    GET_BY_NAME,
-    GET_BY_ID
+    GET_ALL_ACTIVITIES,
+    POST_ACTIVITY,
+    COUNTRY_BY_SEASON
 } from "../actions/actionsName";
 
 const initialState = {
@@ -18,24 +19,31 @@ const initialState = {
 
 export default function rootReducer(state = initialState, action) {
     switch (action.type) {
-/*------------------countries-----------------------*/
+        /*------------------countries-----------------------*/
         case GET_ALL_COUNTRIES:
             return {
                 ...state,
                 countries: action.payload,
-                filters: action.payload
+                    filters: action.payload
             };
 
-        case GET_BY_NAME:
+        case COUNTRY_BY_ID:
             return {
                 ...state,
-                countries: action.payload
+                byId: action.payload,
+                    countries: action.payload
             };
-        case FILTER_BY_CONTINENT:
+
+        case COUNTRY_BY_NAME:
+            return {
+                ...state,
+                filters: action.payload
+            };
+        case COUNTRY_BY_CONTINENT:
 
             const byContinent =
-                action.payload === 'All'?
-                state.countries:
+                action.payload === 'All' ?
+                state.countries :
                 state.countries.filter(
                     co => co.continent === action.payload
                 )
@@ -44,12 +52,12 @@ export default function rootReducer(state = initialState, action) {
                 filters: byContinent,
 
             };
-        case FILTER_BY_ACTIVITY:
+        case COUNTRY_BY_ACTIVITY:
             const byActivity =
                 action.payload === 'All' ?
                 state.countries :
                 state.countries.filter(
-                    co => co.activities && co.activities.filter(
+                    co => co.Tourist_Act && co.Tourist_Act.filter(
                         ac => ac.name === action.payload
                     ).length
                 )
@@ -57,26 +65,7 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 filters: byActivity
             };
-/*--------------------activities--------------------*/
-        case GET_ALL_ACTIVITIES:
-            return {
-                ...state,
-                activities: action.payload
-            };
-        case FILTER_ACT_BY_SEASON:
-            const bySeason =
-                action.payload === 'All' ?
-                state.activities :
-                state.activities.filter(
-                    co => co.activities && co.activities.filter(
-                    act => act.season === action.payload
-                    ).lenght
-                )
-            return {
-                ...state,
-                filters: bySeason
-            };
-/*------------------filters-------------------------*/
+
         case FILTER_POPU_APLH:
             let order;
             if (action.payload === 'All') order = state.countries;
@@ -108,13 +97,36 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 filters: order
             };
-/*------------------by id---------------------------*/
-        case GET_BY_ID:
+            /*--------------------activities--------------------*/
+        case GET_ALL_ACTIVITIES:
             return {
                 ...state,
-                byId: action.payload,
-                countries: action.payload
+                activities: action.payload
             };
+
+        case POST_ACTIVITY:
+            return {
+                ...state,
+
+            };
+
+        case COUNTRY_BY_SEASON:
+            const bySeason =
+                action.payload === 'All' ?
+                state.countries :
+                state.countries.filter(
+                    co => co.activities && co.activities.filter(
+                        act => act.season === action.payload
+                    ).lenght
+                )
+            return {
+                ...state,
+                filters: bySeason
+            };
+            /*------------------filters-------------------------*/
+
+            /*------------------by id---------------------------*/
+
 
         default:
             return state

@@ -22,15 +22,15 @@ export default function Detail(){
         <NavBar />
         {
             detail ?(
-                <div className={s.container}>
+                <div >
                     <div key={detail.id}></div>
-                    <div className={s.card}>
-                        <div className={s.imgContainer}>
-                           <img src={detail.flags} className={s.flags} alt="image_flag" />
+                    <div>
+                        <div >
+                           <img src={detail.flags} alt="image_flag" />
                         </div>
 
-                        <div className={s.dataContainer}>
-                            <h2 className={s.title}>
+                        <div >
+                            <h2>
                                 {detail.name} ~ {detail.id}
                             </h2>
                             <h4 >Continent: {detail.continents} </h4>
@@ -39,7 +39,7 @@ export default function Detail(){
                             <h4>Capital:  {detail.capital}</h4>
                             <h4>Population:  {detail.population}</h4>
                             <h4>Area:  {detail.area} km²</h4>
-                            <h4 className={s.activities}>Activities:  </h4>
+                            <h4 >Activities:  </h4>
 
                             {detail.activities && 
                                 detail.activities.map((a) => (

@@ -6,8 +6,8 @@ import s from './NavStyle.module.css';
 export default function NavBar(){
     return(
         <>
-        <nav className={s.navBar}>
-            <div className={s.container}>
+        <nav >
+            <div >
                     <Link to='/'>LANDING</Link>
                     <Link to='/home'>HOME</Link>
                     <Link to='/addActivity'>ADD ACTIVITIES</Link>

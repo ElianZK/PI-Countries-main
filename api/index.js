@@ -30,10 +30,10 @@ conn.sync({force: false}).then(() => {
       const apiUrl = await axios.get('https://restcountries.com/v3/all');
       const apiData = apiUrl.data.map(e => {
         return {
-          name: e.name.common,
-          continent: e.continents,
-          flag_image: e.flags[0], //.map(e=>e)
           id: e.cca3,
+          name: e.name.common,
+          flag_image: e.flags[0], //.map(e=>e)
+          continent: e.continents,
           capital: e.capital,
           subregion: e.subregion,
           area: e.area,

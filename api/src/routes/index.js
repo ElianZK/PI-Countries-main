@@ -40,23 +40,19 @@ router.get('/countries', async (req, res, next) => {
     } = req.query;
     try {
         if (!name) {
-            const allCountries = await Country.findAll({
+            const countries = await Country.findAll({
                 inclide: Tourist_Act
-            });
-            res.status(200).send(allCountries)
+            })
+            res.status(200).send(countries)
         } else {
-            const nameCountries = await Country.findAll({
+            const country = await Country.findAll({
                 where: {
                     name: {
                         [Op.iLike]: `%${name}%`
                     }
                 }
             });
-            // nameCountries.length ?
-                res.status(200).send(nameCountries) //:
-                // res.status(404).json({
-                //     error: 'Country not found'
-                // });
+                res.status(200).send(country) 
         }
     } catch (error) {
         next(error)
@@ -84,10 +80,6 @@ router.get("/countries/:id", async (req, res, next) => {
     } catch (error) {
         next(error)
     }
-
-
-
-
 });
 
 //------------------------------------------------------------------------------------------------

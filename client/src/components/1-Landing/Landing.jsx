@@ -6,11 +6,10 @@ import React from 'react';
 export default function LandingPage(){
     return (
         <>
-        <div className={s.container}>
-            <div className={s.textContainer}>
+        <div>
+            <div>
             <Link to='/home'>
-                <h2 className={s.title}>Countries</h2>
-                {/* <button className={s.btn}>ENTER</button> */}
+                <h2>Countries</h2>
             </Link>
             </div>
         </div>

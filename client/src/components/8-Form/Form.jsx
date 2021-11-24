@@ -50,17 +50,16 @@ export default function ActForm(){
 
     return (
         <>
-            <div className={s.container}>
-                <div className={s.card}>
+            <div >
+                <div >
                     
                     <form onSubmit={handleSubmit}>
 
-                        <h2 className={s.title}>Add a Tourist Activity</h2>
+                        <h2 >Add a Tourist Activity</h2>
 
-                        <div className={s.labelContain}>
-                            <label className={s.label} htmlFor='name'>Activity Name:   </label>
+                        <div >
+                            <label  htmlFor='name'>Activity Name:   </label>
                             <input
-                                className={s.input}
                                 onChange={handleChange}
                                 value={activity.name}
                                 name='name'
@@ -70,10 +69,10 @@ export default function ActForm(){
                             </input><br/>
                         </div>
 
-                        <div className={s.labelContain}>
-                            <label className={s.label} htmlFor='season'>Activity Season:   </label>
+                        <div >
+                            <label  htmlFor='season'>Activity Season:   </label>
                             <select 
-                                    className={s.input}
+                                    
                                     onChange={handleChange}
                                     key={activity.season}
                                     value={activity.season}
@@ -89,10 +88,10 @@ export default function ActForm(){
                             </select><br/>
                         </div>
 
-                        <div className={s.labelContain}>
+                        <div>
                             <label>Activity Duration:   </label>
                             <input
-                                className={s.input}
+                               
                                 onChange={handleChange}
                                 value={activity.duration}
                                 id='duration'
@@ -103,10 +102,10 @@ export default function ActForm(){
                             </input><br/>
                         </div>
 
-                        <div className={s.labelContain}>
-                            <label className={s.label} htmlFor='difficulty'>Activity Difficulty:   </label>
+                        <div>
+                            <label  htmlFor='difficulty'>Activity Difficulty:   </label>
                             <select 
-                                    className={s.input}
+                                   
                                     onChange={handleChange}
                                     key={activity.difficulty}
                                     value={activity.difficulty}
@@ -123,10 +122,9 @@ export default function ActForm(){
                             </select><br/>
                         </div>
 
-                        <div className={s.labelContain}>
+                        <div>
                             <label>Activity Countries:   </label>
                             <select
-                                    className={s.input}
                                     onChange={handleSelect}
                                     key={activity.countries}
                                     value={activity.countries}
@@ -149,7 +147,7 @@ export default function ActForm(){
                         <Link to='/home'> 
                                     <button>Back</button>
                         </Link>
-                        <button type='submit' className={s.create}>Create Activity</button>
+                        <button type='submit'>Create Activity</button>
                     </form>
                 </div>
             </div>
