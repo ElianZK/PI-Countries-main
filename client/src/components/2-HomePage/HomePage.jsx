@@ -33,7 +33,7 @@ export default function HomePage(){
     }
     //pagination
     const [currentPage, setCurrentPage] = useState(1)
-    const [countriesPage] = useState(9)
+    const [countriesPage] = useState(22)
 
     let indexOfLastCountry = currentPage * countriesPage;  //1*9
     let indexOfFirstCountry = indexOfLastCountry - countriesPage; //9-9
@@ -53,7 +53,7 @@ export default function HomePage(){
     }
 
     const renderPages = pages.map(page => (
-        <li key={page}>
+        <li  key={page}>
             <div>
                 <button onClick={e => pagination(e, page)}>
                 {page}
@@ -93,12 +93,12 @@ export default function HomePage(){
 
     return (
         <>
-        <div>
+        <div className= {s.BackGround}>
             <NavBar />
             <br></br>
                 <SearchBar />
                 <br></br>
-                    <div>
+                    <div className={s.FilterContainer}>
                         <select 
                             onChange={handleCountryByContinent}>
                                 <option value='All'>Filters By Continents</option>
@@ -135,28 +135,18 @@ export default function HomePage(){
                                 <option value='ASC'>Ascendant Population</option>
                                 <option value='DESC'>Descendant Population</option>
                         </select>
-                    </div>  
-            <div>
+                    </div> 
+                     
+            <div className={s.RefreshButton}>
                 <button onClick={(e) => handleClick(e)}>Refresh Country</button>
                 {console.log(currentCountries)}
             </div>
-               {/*  {currentCountries.length?(
-                    currentCountries.map((c) => (
-                        <Card
-                            name={c.name}
-                            id={c.id}
-                            flag={c.flag}
-                            continent={c.continent}
-                            key={c.id}
-                        />
-                    ))
-                ):(<h3>Country Not found</h3>)
-                }  */}
+            <ul className={s.Pagination}>{renderPages}</ul> 
         </div> 
         <div>
             <AllCards  countries={currentCountries} />
         </div>
-        <ul>{renderPages}</ul>       
+              
         </>
     )
 }        

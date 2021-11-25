@@ -132,17 +132,22 @@ export default function Form(){
                                     name='countries'
                                     placeholder='Your Activity Country'
                                     required='required'>
+                                        {console.log(countries)}
                                 <option value='All'>Choose Activity Countries</option>
+
                                 {countries.map((c)=> (
                                     <option 
                                     key={c.id} 
-                                    value={c.id}>{c.name}</option>
+                                    value={c.id}>{c.name}
+                                    </option>
                                 ))}
                             </select>
                             <br></br>
                         </div>
                         <ul>
-                            <li>{activity.countries.map((c) => `~${c}`)}</li>
+                            <li>
+                                {activity.countries.map((c) => `~${c}`)}
+                            </li>
                         </ul>
                         <Link to='/home'> 
                              <button>Back to Home</button>

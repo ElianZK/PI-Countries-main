@@ -1,3 +1,32 @@
+.Pagination {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+    list-style: none;
+    padding-left: 30px;
+    padding-right: 30px;
+    flex-wrap: nowrap;
+}
 
+.BackGround {
+    height: 100%;
+    width: 100vw;
+}
 
+.FilterContainer {
+    display: flex;
+    width: 100vw;
+    flex-direction: row;
+    justify-content: center;
+    padding: 15px;
+    flex-wrap: wrap;
+}
 
+.RefreshButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    justify-content: center;
+}

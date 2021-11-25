@@ -1,3 +1,59 @@
+.All{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    padding:3px;
+    height: 255px;
+    
 
-  
-  
+}
+.Container {
+    display: flex;
+    height: 100%;
+    width: 600px;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    flex-wrap: wrap;
+    background-color: coral;
+    
+
+}
+
+.ImageContainer {
+    display:flex;
+    width: 100px;
+    height: 80px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding:3px;
+}
+
+.Image{
+    display: flex;
+    width:100px;
+}
+
+.TextContainer{
+    display:flex;
+    flex-direction: column;
+    width: 600px;
+    align-items: center;
+    justify-content: center;
+}
+.Name{
+    display: flex;
+    height: 30px;
+}
+
+.Link{
+    display: flex;
+
+}
+
+.Continents{
+    display: flex;
+
+}

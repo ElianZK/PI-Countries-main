@@ -4,6 +4,7 @@ import React, {useEffect} from 'react';
 import {countryDetail} from '../../actions/actions';
 import s from './DetailStyle.module.css';
 import NavBar from '../3-NavBar/NavBar';
+import { Link } from 'react-router-dom';
 
 export default function Detail(){
     const dispatch = useDispatch();
@@ -11,12 +12,10 @@ export default function Detail(){
     useEffect(() => {
         dispatch(countryDetail(id));    
     },[dispatch,id]);
-    
     const detail = useSelector((state) => state.detail);
     
     return (
         <>
-        <NavBar />
         {
             detail?(
                 <div >
@@ -38,8 +37,8 @@ export default function Detail(){
                             <h4>Area:  {detail.area} km²</h4>
                             <h4 >Activities:  </h4>
 
-                            {detail.activities && 
-                                detail.activities.map((a) => (
+                            {detail.Activities && 
+                                detail.Activities.map((a) => (
                                     <p key={a.id}>
                                         <li>Name: {a.name}</li>
                                         <li>Season: {a.season} </li>
@@ -51,6 +50,9 @@ export default function Detail(){
 
                         </div>
                     </div>
+                    <Link to='/home'>
+                        <button>Home Page</button>
+                    </Link>
                 </div>
             ):(<span>Country Not Found</span>)
         }

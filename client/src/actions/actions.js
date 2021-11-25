@@ -30,10 +30,11 @@ export function countryByName(name) {
     return async function(dispatch){
         try{
             const country = await axios.get(`http://localhost:3001/countries?name=${name}`)
-            return dispatch({
+            country.data.length?
+            dispatch({
                 type: COUNTRY_BY_NAME,
                 payload: country.data
-            })
+            }):alert('Pais no encontrado')
         }catch(err){
             console.log(err)
         }
@@ -44,14 +45,12 @@ export function countryDetail(id) {
     return async function(dispatch){
         try{
             const details= await axios.get(`http://localhost:3001/countries/${id}`)
-            
             return dispatch({
                 type: COUNTRY_DETAIL,
                 payload: details.data
             })
-           
         }catch(err){
-            console.log(err)
+            alert('Pais no encontrado')
         }   
     }
 };
@@ -63,8 +62,6 @@ export function postActivity(payload) {
                 type: POST_ACTIVITY,
                 payload: newActivity
             })
-        //     alert('adsasdsadasdasd')
-        // axios.post('http://localhost:3001/activity', payload).then((r)=>console.log(r))
 
         }
     }

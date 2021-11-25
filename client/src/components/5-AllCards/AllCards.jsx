@@ -5,17 +5,17 @@ import React from 'react';
 export default function AllCards({countries}){
     return (
         <>
-            <section>
+            
                 {countries?.map(country => 
                     <Card 
                         key={country.id}
                         id={country.id}
                         flag={country.flag}
                         name={country.name}
-                        continent={country.continent} 
+                        continents={country.continents} 
                     />
                 )}
-            </section>
+            
         </>
     )
 }

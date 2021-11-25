@@ -6,13 +6,13 @@ import React from 'react';
 export default function Landing(){
     return (
         <>
-        <div>
-            <div>
-            <Link to='/home'>
-                <h2>Countries</h2>
-            </Link>
+            <div className={s.BackGround}>
+                <div className={s.Container}>
+                    <Link to='/home' classname={s.Button}>
+                        <h2 className={s.Text}>Countries</h2>
+                    </Link>
+                </div>
             </div>
-        </div>
         </>
     )
 }

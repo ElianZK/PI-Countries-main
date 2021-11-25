@@ -1,9 +1,16 @@
+.Container {
+    display: flex;
+    width: 100vw;
+    height: 100px;
+}
 
-
-
-
-
-
-
-
-
+.Buttons {
+    background-color: chocolate;
+    width: 100vw;
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+}
