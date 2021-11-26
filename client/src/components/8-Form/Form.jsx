@@ -15,6 +15,13 @@ export default function Form(){
         season:'',
         countries:[]
     })
+    const [error, setError] = useState({
+        name: '',
+        difficulty: '',
+        duration: '',
+        season:'',
+        countries:[]
+    })
 
     useEffect(()=>{
         dispatch(getAllCountries())
@@ -32,6 +39,14 @@ export default function Form(){
         alert('Activity Created Succesfuly')
     }
     function handleChange(e){
+        let name= e.target.name;
+        let value= e.target.value;
+        if(value==""){
+            setError({...error,[name]:'No se admite campo vacio'})
+        }else if((name==="name" || name==="season")&& /\d/.test(value)){
+            setError({...error,[name]:'Solo se admiten letras'})
+        }else if(name!="season" && name!="name" && isNaN(value))
+            setError({...error,[name]:'Solo se admiten numeros'})
         setActivity({
             ...activity,
             [e.target.name] : e.target.value,
@@ -39,6 +54,7 @@ export default function Form(){
     }
 
     function handleSelect(e){
+
         setActivity({
             ...activity,
             countries:[...activity.countries, e.target.value]
@@ -150,6 +166,7 @@ export default function Form(){
                         <Link to='/home'> 
                             <button>Back to Home</button>
                         </Link>
+                        {(error.name || error.season)?<span>Se ha detectado un error</span>:null}
                         <button onClick={handleSubmit}>Add Activity</button>
                     </div>
                 </form>
