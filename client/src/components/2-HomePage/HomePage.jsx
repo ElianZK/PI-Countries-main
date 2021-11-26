@@ -63,8 +63,7 @@ export default function HomePage(){
     ))
 
     
-
-    //filters
+//-------------------filters------------------------------
     function handleCountryByContinent(e){
         dispatch(countryByContinent(e.target.value))
         setSort(e.target.value)
@@ -90,63 +89,61 @@ export default function HomePage(){
     }
 
     
-
+//--------------------------------------------------------
+                        /*Home Page*/
+//--------------------------------------------------------
     return (
         <>
-        <div className= {s.BackGround}>
-            <NavBar />
-            <br></br>
+            <div className={s.BackGround}>
+                <NavBar />
+                <br></br>
                 <SearchBar />
                 <br></br>
-                    <div className={s.FilterContainer}>
-                        <select 
-                            onChange={handleCountryByContinent}>
-                                <option value='All'>Filters By Continents</option>
-                                <option value='Africa'>Africa</option>
-                                <option value='Asia'>Asia</option>
-                                <option value='Europe'>Europe</option>
-                                <option value='North America'>North America</option>
-                                <option value='Oceania'>Oceania</option>
-                                <option value='South America'>South America</option>
-                        </select>
-                        <select 
-                            onChange={handleActivityBySeason}>
-                                <option value='All'>Filters By Season</option>
-                                <option value='Autumn'>Autumn</option>
-                                <option value='Spring'>Spring</option>
-                                <option value='Summer'>Summer</option>
-                                <option value='Winter'>Winter</option>
-                        </select>
-                        <select 
-                            onChange={handleCountryByActivity}>
-                                <option value='All'>Filters By Activities</option>
-                                <option value='Surf'>Surf</option>
-                                <option value='Safari'>Safari</option>
-                                <option value='Sky diving'>Sky diving</option>
-                                <option value='Diving'>Diving</option>
-                                <option value='Montain Climb'>Montain-Climb</option>
-                                <option value='Camping'>Camping</option>
-                        </select>
-                        <select 
-                            onChange={handleFilterPopuAlph}>
-                                <option value='All'>Sorts</option>
-                                <option value='A-Z'>Countries A to Z</option>
-                                <option value='Z-A'>Countries Z to A</option>
-                                <option value='ASC'>Ascendant Population</option>
-                                <option value='DESC'>Descendant Population</option>
-                        </select>
-                    </div> 
-                     
-            <div className={s.RefreshButton}>
-                <button onClick={(e) => handleClick(e)}>Refresh Country</button>
-                {console.log(currentCountries)}
+                <div className={s.FilterContainer}>
+                    <select onChange={handleCountryByContinent}>
+                        <option value='All'>Filters By Continents</option>
+                        <option value='Africa'>Africa</option>
+                        <option value='Asia'>Asia</option>
+                        <option value='Europe'>Europe</option>
+                        <option value='North America'>North America</option>
+                        <option value='Oceania'>Oceania</option>
+                        <option value='South America'>South America</option>
+                    </select>
+                    <select onChange={handleActivityBySeason}>
+                        <option value='All'>Filters By Season</option>
+                        <option value='Autumn'>Autumn</option>
+                        <option value='Spring'>Spring</option>
+                        <option value='Summer'>Summer</option>
+                        <option value='Winter'>Winter</option>
+                    </select>
+                    <select onChange={handleCountryByActivity}>
+                        <option value='All'>Filters By Activities</option>
+                        <option value='Surf'>Surf</option>
+                        <option value='Safari'>Safari</option>
+                        <option value='Sky diving'>Sky diving</option>
+                        <option value='Diving'>Diving</option>
+                        <option value='Montain Climb'>Montain-Climb</option>
+                        <option value='Camping'>Camping</option>
+                    </select>
+                    <select onChange={handleFilterPopuAlph}>
+                        <option value='All'>Sorts</option>
+                        <option value='A-Z'>Countries A to Z</option>
+                        <option value='Z-A'>Countries Z to A</option>
+                        <option value='ASC'>Ascendant Population</option>
+                        <option value='DESC'>Descendant Population</option>
+                    </select>
+                </div>
+
+                <div className={s.RefreshButton}>
+                    <button onClick={(e)=> handleClick(e)}>Refresh Country</button>
+                    {console.log(currentCountries)}
+                </div>
+                <ul className={s.Pagination}>{renderPages}</ul>
             </div>
-            <ul className={s.Pagination}>{renderPages}</ul> 
-        </div> 
-        <div className={s.CardsBackground}>
-            <AllCards  countries={currentCountries} />
-        </div>
-              
+            <div className={s.CardsBackground}>
+                <AllCards countries={currentCountries} />
+            </div>
+
         </>
     )
 }        

@@ -19,17 +19,15 @@ export default function SearchBar(){
     return(
         <>
             <div className={s.Container}>
-                <input
-                    onChange={(e) => handleChange(e)}
-                    placeholder='Country´s Name...'
-                    value={name}
-                    type='text'
+                <input onChange={(e)=> handleChange(e)}
+                placeholder='Country´s Name...'
+                value={name}
+                type='text'
                 />
-                <button
-                    onClick={(e) => handleSubmit(e)}
+                <button onClick={(e)=> handleSubmit(e)}
                     type='submit'>
                     Search
-                </button>      
+                </button>
             </div>
         </>
     )

@@ -21,7 +21,6 @@ export default function Form(){
     },[dispatch])
 
     function handleSubmit(e){
-        // e.prevertDefault()
         dispatch(postActivity(activity))
         setActivity({
             name: '',
@@ -33,7 +32,6 @@ export default function Form(){
         alert('Activity Created Succesfuly')
     }
     function handleChange(e){
-        // e.prevertDefault()
         setActivity({
             ...activity,
             [e.target.name] : e.target.value,
@@ -49,113 +47,113 @@ export default function Form(){
 
     return (
         <>
-                <section className={s.Background}>
-                    
-                    <form className={s.Card}>
+            <section className={s.Background}>
+                
+                <form className={s.Card}>
 
-                        <h2 className={s.Title}>ADD A TOURIST ACTIVITY</h2>
-                        <div >
-                            <label  htmlFor='name'>Activity Name:   </label>
-                            <input
+                    <h2 className={s.Title}>ADD A TOURIST ACTIVITY</h2>
+                    <div >
+                        <label  htmlFor='name'>Activity Name:   </label>
+                        <input
+                            onChange={handleChange}
+                            value={activity.name}
+                            name='name'
+                            type='text'
+                            placeholder='Insert a name...'
+                            >
+                        </input>
+                        <br></br>
+                    </div>
+
+                    <div >
+                        <label  htmlFor='season'>Activity Season:   </label>
+                        <select    
                                 onChange={handleChange}
-                                value={activity.name}
-                                name='name'
+                                key={activity.season}
+                                // value={activity.season}
+                                id='season'
                                 type='text'
-                                placeholder='Insert a name...'
-                                >
-                            </input>
-                            <br></br>
-                        </div>
-
-                        <div >
-                            <label  htmlFor='season'>Activity Season:   </label>
-                            <select    
-                                    onChange={handleChange}
-                                    key={activity.season}
-                                    // value={activity.season}
-                                    id='season'
-                                    type='text'
-                                    name='season'
-                                    required='required'>
-                                <option value=''>Choose Your Activity Season</option>
-                                <option value='Summer'>Summer</option>
-                                <option value='Autumn'>Autumn</option>
-                                <option value='Winter'>Winter</option>
-                                <option value='Spring'>Spring</option>
-                            </select>
-                            <br></br>
-                        </div>
-
-                        <div>
-                            <label>Activity Duration:   </label>
-                            <input
-                                onChange={handleChange}
-                                value={activity.duration}
-                                id='duration'
-                                type='text'
-                                name='duration'
-                                placeholder='The activity duration'
+                                name='season'
                                 required='required'>
-                            </input>
-                            <br></br>
-                        </div>
+                            <option value=''>Choose Your Activity Season</option>
+                            <option value='Summer'>Summer</option>
+                            <option value='Autumn'>Autumn</option>
+                            <option value='Winter'>Winter</option>
+                            <option value='Spring'>Spring</option>
+                        </select>
+                        <br></br>
+                    </div>
 
-                        <div>
-                            <label  htmlFor='difficulty'>Activity Difficulty:   </label>
-                            <select 
-                                    onChange={handleChange}
-                                    key={activity.difficulty}
-                                    // value={activity.difficulty}
-                                    id='difficulty'
-                                    type='text'
-                                    name='difficulty'
-                                    required='required'>
-                                <option value=''>Choose the Activity Difficulty</option>
-                                <option value='1'>1</option>
-                                <option value='2'>2</option>
-                                <option value='3'>3</option>
-                                <option value='4'>4</option>
-                                <option value='5'>5</option>
-                            </select>
-                            <br></br>
-                        </div>
+                    <div>
+                        <label>Activity Duration:   </label>
+                        <input
+                            onChange={handleChange}
+                            value={activity.duration}
+                            id='duration'
+                            type='text'
+                            name='duration'
+                            placeholder='The activity duration'
+                            required='required'>
+                        </input>
+                        <br></br>
+                    </div>
 
-                        <div>
-                            <label>Activity Countries:   </label>
-                            <select
-                                    onChange={handleSelect}
-                                    key={activity.countries}
-                                    // value={activity.countries}
-                                    id='countries'
-                                    type='text'
-                                    name='countries'
-                                    placeholder='Your Activity Country'
-                                    required='required'>
-                                        {console.log(countries)}
-                                <option value='All'>Choose Activity Countries</option>
+                    <div>
+                        <label  htmlFor='difficulty'>Activity Difficulty:   </label>
+                        <select 
+                                onChange={handleChange}
+                                key={activity.difficulty}
+                                // value={activity.difficulty}
+                                id='difficulty'
+                                type='text'
+                                name='difficulty'
+                                required='required'>
+                            <option value=''>Choose the Activity Difficulty</option>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                            <option value='4'>4</option>
+                            <option value='5'>5</option>
+                        </select>
+                        <br></br>
+                    </div>
 
-                                {countries.map((c)=> (
-                                    <option 
-                                    key={c.id} 
-                                    value={c.id}>{c.name}
-                                    </option>
-                                ))}
-                            </select>
-                            <br></br>
-                        </div>
-                        <ul>
-                            <li className={s.IdCountries}>
-                                {activity.countries.map((c) => `~${c}`)}
-                            </li>
-                        </ul>
-                        <div className={s.ButtonContainer}>
-                            <Link to='/home'> 
-                                <button>Back to Home</button>
-                            </Link>
-                            <button onClick={handleSubmit}>Add Activity</button>
-                        </div>
-                    </form>
-                </section>
+                    <div>
+                        <label>Activity Countries:   </label>
+                        <select
+                                onChange={handleSelect}
+                                key={activity.countries}
+                                // value={activity.countries}
+                                id='countries'
+                                type='text'
+                                name='countries'
+                                placeholder='Your Activity Country'
+                                required='required'>
+                                    {console.log(countries)}
+                            <option value='All'>Choose Activity Countries</option>
+
+                            {countries.map((c)=> (
+                                <option 
+                                key={c.id} 
+                                value={c.id}>{c.name}
+                                </option>
+                            ))}
+                        </select>
+                        <br></br>
+                    </div>
+                    <ul>
+                        <li className={s.IdCountries}>
+                            {activity.countries.map((c) => `~${c}`)}
+                        </li>
+                    </ul>
+                    <div className={s.ButtonContainer}>
+                        <Link to='/home'> 
+                            <button>Back to Home</button>
+                        </Link>
+                        <button onClick={handleSubmit}>Add Activity</button>
+                    </div>
+                </form>
+            </section>
         </>
     )
 }

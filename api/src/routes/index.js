@@ -1,24 +1,12 @@
-const {
-    Router
-} = require('express');
-const {
-    Country,
-    Activity
-} = require('../db')
-const {
-    Op,
-    Model
-} = require('sequelize');
+const {Router} = require('express');
+const {Country,Activity} = require('../db')
+const {Op} = require('sequelize');
 const cors = require ('cors')
-// const axios = require('axios');
 const router = Router();
 router.use(cors())
 //------------------------------------------------------------------------------------------------
-
 router.get('/countries', async (req, res, next) => {
-    const {
-        name
-    } = req.query;
+    const {name} = req.query;
 
     try {
         if (!name) {

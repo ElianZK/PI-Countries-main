@@ -14,7 +14,7 @@
     border-style: solid;
     border-color: rebeccapurple;
     border-radius: 10px;
-    
+
 }
 
 .Title {
@@ -47,27 +47,30 @@ input {
     background-color: black;
     height: 25px;
     border-radius: 5px;
-    color:rebeccapurple;
+    color: rebeccapurple;
     border-color: gold;
     width: 200px;
 
 }
-input::placeholder{
+
+input::placeholder {
     color: rebeccapurple;
     font-size: medium;
-    
+
 }
+
 .ButtonContainer {
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: center;
     align-self: center;
 }
-button{
+
+button {
     display: flex;
     height: 30px;
 }
 
-.IdCountries{
-    color:gold;
+.IdCountries {
+    color: gold;
 }

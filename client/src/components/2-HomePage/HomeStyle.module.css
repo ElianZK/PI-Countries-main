@@ -9,7 +9,6 @@
     padding-right: 30px;
     flex-wrap: nowrap;
     width: 1000px;
-    
 }
 
 
@@ -33,29 +32,30 @@
     justify-content: space-evenly;
 }
 
-select{
-    color:gold;
+select {
+    color: gold;
     background-color: rebeccapurple;
     height: 30px;
     width: 210px;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: large;
     border-radius: 5px;
-    
+
 }
 
-input{
+input {
     background-color: gold;
 }
 
-button{
-    color:gold;
+button {
+    color: gold;
     background-color: rebeccapurple;
     font-size: large;
     border-radius: 5px;
 }
-button:hover{
-    color:rebeccapurple;
+
+button:hover {
+    color: rebeccapurple;
     background-color: gold;
 }
 
@@ -66,7 +66,7 @@ button:hover{
     justify-content: center;
 }
 
-.CardsBackground{
+.CardsBackground {
     display: flex;
     flex-direction: column;
     align-items: center;

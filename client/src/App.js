@@ -12,16 +12,13 @@ import{getAllCountries,getAllActivities} from './actions/actions'
 
 
 
-
-
-
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-       dispatch(getAllCountries())
-       dispatch(getAllActivities()) 
-      
-   }, [dispatch])
+    dispatch(getAllCountries())
+    dispatch(getAllActivities())
+
+  }, [dispatch])
 /*--------------routes-----------*/
   return (
     <>
