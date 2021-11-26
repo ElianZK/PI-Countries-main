@@ -2,6 +2,7 @@ import {getAllCountries, postActivity} from '../../actions/actions';
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
+import s from './FormStyle.module.css'
 
 
 export default function Form(){
@@ -48,13 +49,11 @@ export default function Form(){
 
     return (
         <>
-            <div >
-                <div >
+                <section className={s.Background}>
                     
-                    <form /*onSubmit={(e)=>console.log(e)}*/>
+                    <form className={s.Card}>
 
-                        <h2 >Add a Tourist Activity</h2>
-
+                        <h2 className={s.Title}>ADD A TOURIST ACTIVITY</h2>
                         <div >
                             <label  htmlFor='name'>Activity Name:   </label>
                             <input
@@ -145,17 +144,18 @@ export default function Form(){
                             <br></br>
                         </div>
                         <ul>
-                            <li>
+                            <li className={s.IdCountries}>
                                 {activity.countries.map((c) => `~${c}`)}
                             </li>
                         </ul>
-                        <Link to='/home'> 
-                             <button>Back to Home</button>
-                        </Link>
-                        <button onClick={handleSubmit}>Add Activity</button>
+                        <div className={s.ButtonContainer}>
+                            <Link to='/home'> 
+                                <button>Back to Home</button>
+                            </Link>
+                            <button onClick={handleSubmit}>Add Activity</button>
+                        </div>
                     </form>
-                </div>
-            </div>
+                </section>
         </>
     )
 }

@@ -18,25 +18,28 @@ export default function Detail(){
         <>
         {
             detail?(
-                <div >
-                    <div key={detail.id}></div>
-                    <div>
-                        <div >
-                           <img src={detail.flag} alt="image_flag" />
+                <div className={s.BackGround}>
+                    <div className={s.Card}>
+                        <div className={s.ImageContainer}>
+                            <img 
+                            className={s.Image} 
+                            src={detail.flag} 
+                            alt="image_flag"
+                            />
                         </div>
 
-                        <div >
-                            <h2>
-                                {detail.name} ~ {detail.id}
+                        <div className={s.DetailContainer} >
+                            <h2 padding='0px'>
+                                {detail.name}({detail.id})
                             </h2>
-                            <h4 >Continent: {detail.continents} </h4>
-                            <h4> Subregion: {detail.subregion ? ' ~ ' + detail.subregion : '---'}</h4>
+                            <h4 padding='0px'>Continent: {detail.continents} </h4>
+                            <h4 padding='0px'> Subregion: {detail.subregion ? '   ' + detail.subregion : '---'}</h4>
+                            <h4 padding='0px'>Capital:  {detail.capital}</h4>
+                            <h4 padding='0px'>Population:  {detail.population}</h4>
+                            <h4 padding='0px'>Area:  {detail.area} km²</h4>
+                            <h4 padding='0px'>Activities:  </h4>
 
-                            <h4>Capital:  {detail.capital}</h4>
-                            <h4>Population:  {detail.population}</h4>
-                            <h4>Area:  {detail.area} km²</h4>
-                            <h4 >Activities:  </h4>
-
+                            <div className={s.ActContainer}>
                             {detail.Activities && 
                                 detail.Activities.map((a) => (
                                     <p key={a.id}>
@@ -47,10 +50,11 @@ export default function Detail(){
                                     </p>
                                 ))
                             }
+                            </div>
 
                         </div>
                     </div>
-                    <Link to='/home'>
+                    <Link className={s.Link} to='/home'>
                         <button>Home Page</button>
                     </Link>
                 </div>

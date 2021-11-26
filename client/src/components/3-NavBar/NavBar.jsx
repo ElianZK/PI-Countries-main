@@ -8,9 +8,9 @@ export default function NavBar(){
         <>
             <nav className={s.Container}>
                 <div className={s.Buttons}>
-                    <Link to='/'>LANDING PAGE</Link>
-                    <Link to='/home'>HOME PAGE</Link>
-                    <Link to='/postActivity'>ADD TOURIST ACTIVITIES</Link>
+                    <Link className={s.Link} to='/'>LANDING PAGE</Link>
+                    <Link className={s.Link} to='/home'>HOME PAGE</Link>
+                    <Link className={s.Link} to='/postActivity'>ADD TOURIST ACTIVITIES</Link>
                 </div>
             </nav>
         </>

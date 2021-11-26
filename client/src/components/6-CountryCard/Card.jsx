@@ -12,8 +12,7 @@ export default function Card({id, flag, name, continents}){
                     <img className={s.Image} src={flag} alt='flag' />
                 </div>
                 <div className={s.TextContainer}>
-                    <h1 className={s.Name}>{name}</h1>
-                    <Link className={s.Link} to={`/countries/${id}`}>{id}</Link>
+                    <h1 className={s.Name}>{name}<Link className={s.Link} to={`/countries/${id}`}>({id})</Link></h1>
                     <h2 className={s.Continents}>{continents}</h2>   
                 </div>
             </div> 

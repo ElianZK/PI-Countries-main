@@ -1,4 +1,56 @@
+.BackGround {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100vw;
+    height: 100vw;
+}
 
- 
+.Card {
+    display: flex;
+    width: 500px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 900px;
+    border-style: solid;
+    border-color: gold;
+    margin-top: 100px;
+    background-color: rebeccapurple;
 
+}
 
+.ImageContainer {
+    height: 150px;
+    width: 300px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    border-top: transparent;
+    border-color: transparent;
+}
+
+.Image {
+    display: flex;
+    height: 150px;
+    width: 300px;
+    padding: 0px;
+}
+
+.DetailContainer {
+    display: flex;
+    color: gold;
+    width: 400px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: medium;
+
+}
+
+.ActContainer {
+
+}

@@ -26,13 +26,13 @@
 
 .Text:hover{
     background-color: gold;
-    color:blueviolet
+    color:blueviolet;
 }
 
 .Text{
     background-color: blueviolet;
     height: 100px;
-    width: 240px;
+    width: 300px;
     border-radius: 5px;
     display:flex;
     flex-direction: column;

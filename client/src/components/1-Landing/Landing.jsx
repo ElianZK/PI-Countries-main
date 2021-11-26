@@ -9,7 +9,7 @@ export default function Landing(){
             <div className={s.BackGround}>
                 <div className={s.Container}>
                     <Link to='/home' classname={s.Button}>
-                        <h2 className={s.Text}>Countries</h2>
+                        <h2 className={s.Text}>Pi-Countries</h2>
                     </Link>
                 </div>
             </div>

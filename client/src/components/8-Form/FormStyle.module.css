@@ -1,0 +1,73 @@
+.Background {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Card {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 530px;
+    height: 700px;
+    border-style: solid;
+    border-color: rebeccapurple;
+    border-radius: 10px;
+    
+}
+
+.Title {
+    display: flex;
+    align-self: center;
+    color: gold
+}
+
+div {
+    padding-bottom: 30px;
+    font-size: larger;
+    padding: 20px;
+}
+
+label {
+    color: gold;
+    margin-right: 10px;
+}
+
+select {
+    background-color: black;
+    color: rebeccapurple;
+    font-size: medium;
+    height: 30px;
+    width: 270px;
+    border-color: gold;
+}
+
+input {
+    background-color: black;
+    height: 25px;
+    border-radius: 5px;
+    color:rebeccapurple;
+    border-color: gold;
+    width: 200px;
+
+}
+input::placeholder{
+    color: rebeccapurple;
+    font-size: medium;
+    
+}
+.ButtonContainer {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-self: center;
+}
+button{
+    display: flex;
+    height: 30px;
+}
+
+.IdCountries{
+    color:gold;
+}

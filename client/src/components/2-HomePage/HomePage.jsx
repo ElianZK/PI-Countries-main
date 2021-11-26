@@ -33,7 +33,7 @@ export default function HomePage(){
     }
     //pagination
     const [currentPage, setCurrentPage] = useState(1)
-    const [countriesPage] = useState(22)
+    const [countriesPage] = useState(13)
 
     let indexOfLastCountry = currentPage * countriesPage;  //1*9
     let indexOfFirstCountry = indexOfLastCountry - countriesPage; //9-9
@@ -143,7 +143,7 @@ export default function HomePage(){
             </div>
             <ul className={s.Pagination}>{renderPages}</ul> 
         </div> 
-        <div>
+        <div className={s.CardsBackground}>
             <AllCards  countries={currentCountries} />
         </div>
               
